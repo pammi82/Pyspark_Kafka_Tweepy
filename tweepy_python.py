@@ -20,34 +20,17 @@ class StdOutListener(StreamListener):
         topic = 'twitter_events_test'
         
         all_data = json.loads(data)
-        #print(data)
-        #print(" Printing data this time \n\n\n\n\n")
-        
-        tweets = all_data['text']
-        location = all_data['user']['location']
-        
-    
-    
-        #producer.send_messages(topic, tweets.encode('utf-8'))
-        
-        
-        print("Printing tweets text this time:")
-        print(tweets+"\n\n")
+        producer.send_messages(topic, tweets.encode('utf-8'))
         return True
     def on_error(self, status):
         print (status)
 
 
-#producer = KafkaProducer(bootstrap_servers='10.0.15.25:6667,10.0.15.26:6667',
-#                                 )
+producer = KafkaProducer(bootstrap_servers='sandbox.hortonworks.com:6667')                                )
         
 l = StdOutListener()
 auth = OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
-# api = tweepy.API(auth)
-# public_tweets = api.home_timeline()
 stream = Stream(auth, l)
+stream.filter(track=['trump'])
 
-#stream.filter(track=['#python','#java','#Analytics'])
-
-stream.filter(track=['python'])

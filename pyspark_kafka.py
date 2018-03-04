@@ -26,7 +26,7 @@ def stream(ssc):
                                                                                                                                                                            
     try:                                                                                                                                                                   
                                                                                                                                                                            
-        #zkQuorum="10.0.15.25:2181,10.0.15.26:2181,10.0.15.27:2181"                                                                                                        
+                                                                                                                
         zkQuorum="sandbox.hortonworks.com:2181"                                                                                                                            
                                                                                                                                                                            
         topic="python"                                                                                                                                                     
